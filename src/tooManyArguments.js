@@ -1,6 +1,7 @@
 export const tooManyArguments = context => ({
   CallExpression(node) {
-    if (node.callee.name === 'require' && node.arguments.length > 1) {
+
+    if (['require', 'rewire'].indexOf(node.callee.name) < 0 && node.arguments.length > 1) {
       context.report(node, 'require() called with extra arguments. Only one argument is expected', {});
     }
   }

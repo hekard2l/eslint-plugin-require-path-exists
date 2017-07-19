@@ -129,7 +129,7 @@ export const exists = context => {
     },
 
     CallExpression(node) {
-      if (node.callee.name !== 'require' || !node.arguments.length || typeof node.arguments[0].value !== 'string' || !node.arguments[0].value) {
+      if (['require', 'rewire'].indexOf(node.callee.name) < 0 || !node.arguments.length || typeof node.arguments[0].value !== 'string' || !node.arguments[0].value) {
         return;
       }
 

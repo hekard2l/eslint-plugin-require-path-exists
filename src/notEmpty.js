@@ -1,6 +1,6 @@
 export const notEmpty = context => ({
   CallExpression(node) {
-    if (node.callee.name !== 'require') {
+    if (['require', 'rewire'].indexOf(node.callee.name) < 0 ) {
       return;
     }
 
